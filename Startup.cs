@@ -55,7 +55,7 @@ namespace memespace
                   });
           });
 
-      services.AddMvc();
+      services.AddControllers();
 
       services.AddScoped<IDbConnection>(x => CreateDBContext());
       services.AddTransient<AccountRepository>();
@@ -90,9 +90,16 @@ namespace memespace
         app.UseHsts();
       }
 
-      app.UseAuthentication();
-      app.UseDefaultFiles();
-      app.UseStaticFiles();
+      app.UseHttpsRedirection();
+
+      app.UseRouting();
+
+      app.UseAuthorization();
+
+      app.UseEndpoints(endpoints =>
+      {
+        endpoints.MapControllers();
+      });
     }
   }
 }

@@ -20,7 +20,7 @@ namespace memespace.Repositories
       //HASH THE PASSWORD
       string sql = @"
                 INSERT INTO users 
-                (id, username, firstname, lastname, email, hash, imgurl)
+                (id, username, firstname, lastname, email, hash, imgUrl)
                 VALUES 
                 (@id, @username, @firstname, @lastname, @email, @Hash, @imgurl)";
       _db.Execute(sql, user);
