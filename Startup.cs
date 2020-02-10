@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+using memespace.Repositories;
+using memespace.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -56,8 +58,8 @@ namespace memespace
       services.AddMvc();
 
       services.AddScoped<IDbConnection>(x => CreateDBContext());
-      //   services.AddTransient<AccountRepository>();
-      //   services.AddTransient<AccountService>();
+      services.AddTransient<AccountRepository>();
+      services.AddTransient<AccountService>();
       //   services.AddTransient<KeepsRepository>();
       //   services.AddTransient<KeepsService>();
       //   services.AddTransient<VaultsRepository>();
