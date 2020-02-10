@@ -1,3 +1,4 @@
+using System;
 using System.Data;
 using Dapper;
 using memespace.Models;
@@ -19,9 +20,9 @@ namespace memespace.Repositories
       //HASH THE PASSWORD
       string sql = @"
                 INSERT INTO users 
-                (id, username, firstname, lastname, email, hash)
+                (id, username, firstname, lastname, email, hash, imgurl)
                 VALUES 
-                (@id, @username, @firstname, @lastname, @email, @Hash)";
+                (@id, @username, @firstname, @lastname, @email, @Hash, @imgurl)";
       _db.Execute(sql, user);
     }
 
@@ -35,6 +36,19 @@ namespace memespace.Repositories
     {
       string sql = "SELECT * FROM users WHERE id = @id";
       return _db.QueryFirstOrDefault<User>(sql, new { id });
+    }
+
+    public void Edit(User user)
+    {
+      string sql = @"
+        UPDATE user
+        SET
+          imgUrl = @ImgUrl,
+          backDropUrl = @BackDropUrl,
+          bio = @Bio,
+          interests = @Interests
+        WHERE id = @Id";
+      _db.Execute(sql, user);
     }
   }
 }

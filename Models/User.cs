@@ -34,6 +34,8 @@ namespace memespace.Models
     [Required]
     [MinLength(6)]
     public string Password { get; set; }
+
+    public string ImgUrl { get; set; } = "https://d13ezvd6yrslxm.cloudfront.net/wp/wp-content/images/conair-nicolascage-hair-windblowing-700x322.jpg";
   }
 
   public class User
@@ -45,6 +47,10 @@ namespace memespace.Models
     [EmailAddress]
     public string Email { get; set; }
     public string Hash { get; set; }
+    public string ImgUrl { get; set; }
+    public string BackDropUrl { get; set; }
+    public string Bio { get; set; }
+    public string Interests { get; set; }
     internal ClaimsPrincipal _principal { get; private set; }
 
     internal void SetClaims()

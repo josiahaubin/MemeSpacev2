@@ -84,5 +84,20 @@ namespace memespace.Controllers
         return Unauthorized(e.Message);
       }
     }
+
+    [Authorize]
+    [HttpPut("Edit/{userId}")]
+    public ActionResult<User> UpdateUserInfo(string userId, [FromBody] User info)
+    {
+      try
+      {
+        info.Id = userId;
+        return Ok(_as.Edit(info));
+      }
+      catch (Exception e)
+      {
+        return BadRequest(e.Message);
+      }
+    }
   }
 }

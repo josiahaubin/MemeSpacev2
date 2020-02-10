@@ -21,6 +21,7 @@ namespace memespace.Services
       user.Username = creds.Username;
       user.FirstName = creds.FirstName;
       user.LastName = creds.LastName;
+      user.ImgUrl = creds.ImgUrl;
       user.Hash = BCrypt.Net.BCrypt.HashPassword(creds.Password);
 
       _repo.Register(user);
@@ -43,6 +44,22 @@ namespace memespace.Services
       User user = _repo.GetUserById(Id);
       if (user == null) { throw new Exception("Invalid Request"); }
       user.Hash = null;
+      return user;
+    }
+
+    public User Edit(User info)
+    {
+      User user = _repo.GetUserById(info.Id);
+      if (user == null)
+      {
+        throw new Exception("Invalid ID");
+      }
+      user.ImgUrl = info.ImgUrl;
+      user.BackDropUrl = info.BackDropUrl;
+      user.Bio = info.Bio;
+      user.Interests = user.Interests;
+
+      _repo.Edit(user);
       return user;
     }
   }
